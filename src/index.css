@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Red Hat Display', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Red Hat Display', sans-serif;
+  
+  --color-[#226e40]: #226e40;
+  --color-[#304654]: #304654;
+}
+
+@layer base {
+  html {
+    font-family: 'Red Hat Display', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #FAF9F6;
+    color: #304654;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: rgba(34, 110, 64, 0.2);
+    color: #226e40;
+  }
+
+  /* Typography System */
+  h1, .hero-title {
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: 400;
+    font-size: 47px;
+    line-height: 1.05;
+  }
+  @media (min-width: 768px) {
+    h1, .hero-title {
+      font-size: 3.611rem; /* ~58px */
+    }
+  }
+  @media (min-width: 1024px) {
+    h1, .hero-title {
+      font-size: 5.555rem; /* ~89px */
+    }
+  }
+
+  h2, .section-title {
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.2;
+    color: #304654;
+  }
+  @media (min-width: 768px) {
+    h2, .section-title {
+      font-size: 2.222rem; /* ~35.5px */
+    }
+  }
+  @media (min-width: 1024px) {
+    h2, .section-title {
+      font-size: 3.333rem; /* ~53.3px */
+    }
+  }
+
+  h3, .card-title {
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 1.3;
+    color: #304654;
+  }
+  @media (min-width: 1024px) {
+    h3, .card-title {
+      font-size: 2.5rem; /* ~40px */
+    }
+  }
+
+  .trusted-tagline {
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+  @media (min-width: 1024px) {
+    .trusted-tagline {
+      font-size: 36px;
+    }
+  }
+}
+
+/* Kent Homes Hero Banner Utility Classes */
+.kent-banner-sec {
+  position: relative;
+  width: 100%;
+  min-height: 700px;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background-color: #000000;
+}
+
+.kent-hero-content {
+  position: absolute;
+  color: #ffffff;
+  bottom: 0;
+  padding-bottom: 5.5rem;
+  z-index: 10;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  .kent-hero-content {
+    padding-bottom: 7.833rem;
+  }
+}
+
+.kent-hero-parallax-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.kent-vignette-overlay {
+  background: linear-gradient(
+    to right, 
+    rgba(0, 0, 0, 0.78) 0%, 
+    rgba(0, 0, 0, 0.5) 50%, 
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+.kent-bottom-gradient {
+  background: linear-gradient(
+    to top, 
+    rgba(0, 0, 0, 0.9) 0%, 
+    rgba(0, 0, 0, 0.45) 50%, 
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #226e40;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1b5732;
+}
