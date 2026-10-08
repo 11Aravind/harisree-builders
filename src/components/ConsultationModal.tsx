@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2, MessageSquare, ArrowRight, ShieldCheck } from 'lucide-react';
+import { X, CheckCircle2, ArrowRight, ShieldCheck } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface ModalProps {
   isOpen: boolean;
@@ -126,7 +127,7 @@ export const ConsultationModal: React.FC<ModalProps> = ({ isOpen, onClose, initi
                       onClick={handleWhatsAppDirect}
                       className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-3.5 px-5 rounded-xl transition-all shadow-md text-sm cursor-pointer"
                     >
-                      <MessageSquare className="w-4 h-4 fill-white" />
+                      <WhatsAppIcon className="w-4 h-4 fill-white" />
                       <span>Chat Directly on WhatsApp Now</span>
                     </button>
 

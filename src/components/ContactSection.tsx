@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { 
-  MapPin, Phone, Clock, MessageSquare, Send, CheckCircle2, Navigation 
+  MapPin, Phone, Clock, Send, CheckCircle2, Navigation 
 } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { COMPANY_INFO } from '../data/landingData';
 
 export const ContactSection: React.FC = () => {
@@ -116,7 +117,7 @@ export const ContactSection: React.FC = () => {
                   rel="noreferrer"
                   className="w-full flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-2xl text-sm font-semibold text-white bg-[#25D366] hover:bg-[#20bd5a] shadow-lg transition-all"
                 >
-                  <MessageSquare className="w-5 h-5 fill-white" />
+                  <WhatsAppIcon className="w-5 h-5 fill-white" />
                   <span>Direct WhatsApp Quick-Chat</span>
                 </a>
 
@@ -171,7 +172,7 @@ export const ContactSection: React.FC = () => {
                   onClick={handleWhatsAppDirect}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] shadow-md transition-all mt-4 cursor-pointer"
                 >
-                  <MessageSquare className="w-4 h-4 fill-white" />
+                  <WhatsAppIcon className="w-4 h-4 fill-white" />
                   <span>Send via WhatsApp as well</span>
                 </button>
               </div>

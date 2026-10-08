@@ -62,7 +62,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
   const slide = heroSlides[currentSlide];
 
   return (
-    <section className="kent-banner-sec relative font-sans text-white select-none">
+    <section id="hero" className="kent-banner-sec relative font-sans text-white select-none">
 
 
 

@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare, Check } from 'lucide-react';
+import { Check } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { ESTIMATOR_PACKAGES } from '../data/landingData';
 
 export const CostEstimator: React.FC = () => {
@@ -257,7 +258,7 @@ export const CostEstimator: React.FC = () => {
                 onClick={handleWhatsAppQuote}
                 className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-2xl text-sm font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] shadow-lg transition-all duration-200 active:scale-[0.98]"
               >
-                <MessageSquare className="w-5 h-5 fill-white" />
+                <WhatsAppIcon className="w-5 h-5 fill-white" />
                 <span>Get Itemized Quotation on WhatsApp</span>
               </button>
 

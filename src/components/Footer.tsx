@@ -1,8 +1,9 @@
 import React from 'react';
 import { 
   Phone, Mail, MapPin, ArrowUp, Clock, 
-  MessageSquare, Compass, ShieldCheck, Award, ArrowRight, ExternalLink
+  Compass, ShieldCheck, Award, ArrowRight, ExternalLink
 } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { COMPANY_INFO } from '../data/landingData';
 
 interface FooterProps {
@@ -42,14 +43,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
   ];
 
   return (
-    <footer className="bg-[#15232d] text-slate-300 font-sans relative overflow-hidden">
-      {/* Decorative top ambient glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-[#226e40]/15 blur-3xl pointer-events-none" />
-
-      {/* 1. Pre-Footer Call-To-Action Banner */}
-      <div className="border-b border-slate-700/60 bg-[#101b22]/90">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
-          <div className="relative rounded-3xl bg-gradient-to-r from-[#1b3b2b] via-[#1a3328] to-[#162722] border border-emerald-500/20 p-6 sm:p-8 lg:p-10 shadow-2xl overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8">
+    <>
+      {/* 1. Pre-Footer Call-To-Action Banner (Clean White Background) */}
+      <section className="bg-[#FAF9F6] py-10 lg:py-14 relative font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative rounded-3xl bg-gradient-to-r from-[#1b3b2b] via-[#1a3328] to-[#162722] border border-emerald-500/20 p-6 sm:p-8 lg:p-10 shadow-xl overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8">
             {/* Background pattern accent */}
             <div className="absolute -right-10 -bottom-10 w-60 h-60 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
             
@@ -83,7 +81,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full text-sm font-semibold text-white bg-[#25D366] hover:bg-[#20bd5a] shadow-md transition-all active:scale-95"
               >
-                <MessageSquare className="w-4 h-4 fill-white" />
+                <WhatsAppIcon className="w-4 h-4 fill-white" />
                 <span>WhatsApp Us</span>
               </a>
 
@@ -97,10 +95,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* 2. Main Footer Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+      {/* 2. Main Footer */}
+      <footer className="bg-[#15232d] text-slate-300 font-sans relative overflow-hidden">
+        {/* Decorative top ambient glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-[#226e40]/15 blur-3xl pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-slate-700/60">
           
           {/* Col 1: Brand & Credentials (4 cols on lg) */}
@@ -280,7 +282,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
                   className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-[#25D366] text-white flex items-center justify-center transition-all border border-slate-700 shadow-sm group"
                   aria-label="WhatsApp Contact"
                 >
-                  <MessageSquare className="w-4 h-4 fill-white transition-transform group-hover:scale-110" />
+                  <WhatsAppIcon className="w-4 h-4 fill-white transition-transform group-hover:scale-110" />
                 </a>
 
                 <a
@@ -338,5 +340,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
 
       </div>
     </footer>
+    </>
   );
 };
