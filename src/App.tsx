@@ -33,27 +33,27 @@ export function App() {
       {/* Sticky Navigation Bar */}
       <Navbar onOpenConsultation={handleOpenConsultation} />
 
-      {/* Main Landing Sections */}
+      {/* Main Landing Sections (Optimized User Decision Journey) */}
       <main className="flex-grow">
         {/* 1. Hero Section */}
         <Hero onOpenConsultation={handleOpenConsultation} />
 
-        {/* 2. Who We Are Section */}
+        {/* 2. Who We Are (Brand Identity & Trust) */}
         <WhoWeAre onOpenConsultation={handleOpenConsultation} />
 
-        {/* 3. Building Construction Transformation Animation */}
-        <BuildingTransformation />
-
-        {/* 4. Why Choose Us (5 Value Highlights) */}
-        <WhyChooseUs />
-
-        {/* 5. Comprehensive Services (8 Interactive Image Cards) */}
-        <Services onOpenConsultation={handleOpenConsultation} />
-
-        {/* 6. Dynamic Project Gallery */}
+        {/* 3. Featured Project Gallery (Work Portfolio First) */}
         <ProjectGallery onOpenConsultation={handleOpenConsultation} />
 
-        {/* 7. How We Work (4-Step Process Timeline) */}
+        {/* 4. Comprehensive Services (Core Offerings) */}
+        <Services onOpenConsultation={handleOpenConsultation} />
+
+        {/* 5. Building Transformation (Visual Construction Quality) */}
+        <BuildingTransformation />
+
+        {/* 6. Why Choose Us (Value Proposition & Pillars) */}
+        <WhyChooseUs />
+
+        {/* 7. How We Work (4-Step Onboarding Timeline) */}
         <ProcessTimeline />
 
         {/* 8. Client Testimonials & Social Proof */}
@@ -67,7 +67,7 @@ export function App() {
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer onOpenConsultation={handleOpenConsultation} />
 
       {/* Sticky Mobile Floating Actions (WhatsApp & Call) */}
       <FloatingActions onOpenConsultation={() => handleOpenConsultation()} />

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { Phone, Mail, Edit3 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/landingData';
 
@@ -14,13 +13,12 @@ const WhatsAppIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" 
 );
 
 export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenConsultation }) => {
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-
   const actions = [
     {
       id: 'phone',
       icon: <Phone className="w-5 h-5 text-white shrink-0" />,
       label: 'Call Now',
+      mobileLabel: 'Call Now',
       bgClass: 'bg-[#009688] hover:bg-[#00796b]',
       href: `tel:${COMPANY_INFO.phoneRaw}`,
     },
@@ -28,6 +26,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenConsulta
       id: 'whatsapp',
       icon: <WhatsAppIcon className="w-5 h-5 text-white shrink-0" />,
       label: 'WhatsApp',
+      mobileLabel: 'WhatsApp',
       bgClass: 'bg-[#25D366] hover:bg-[#20bd5a]',
       href: `https://wa.me/919633479993?text=${encodeURIComponent('Hello Harisree Builders! I am interested in your architectural & construction services.')}`,
       target: '_blank'
@@ -36,6 +35,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenConsulta
       id: 'email',
       icon: <Mail className="w-5 h-5 text-white shrink-0" />,
       label: 'Mail Us',
+      mobileLabel: 'Email Now',
       bgClass: 'bg-[#00a8e8] hover:bg-[#0088c2]',
       href: `mailto:${COMPANY_INFO.email}`,
     },
@@ -43,73 +43,106 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenConsulta
       id: 'enquiry',
       icon: <Edit3 className="w-5 h-5 text-white shrink-0" />,
       label: 'Enquire',
-      bgClass: 'bg-[#20c997] hover:bg-[#12b886]',
+      mobileLabel: 'Enquire Now',
+      bgClass: 'bg-[#00875a] hover:bg-[#006c48]',
       onClick: onOpenConsultation,
     }
   ];
 
   return (
-    <aside
-      aria-label="Quick Contact Actions"
-      className="fixed right-3 sm:right-5 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3.5 select-none"
-    >
-      {actions.map((act, idx) => {
-        const isHovered = hoveredIdx === idx;
+    <>
+      {/* Mobile Screen Bottom Floating Action Bar */}
+      <aside
+        aria-label="Mobile Quick Contact Bar"
+        className="md:hidden fixed bottom-3 left-3 right-3 z-50 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-2xl px-2 py-2.5 flex items-center justify-around select-none"
+      >
+        {actions.map((act) => {
+          const mobileButtonContent = (
+            <div className="flex flex-col items-center justify-center group active:scale-95 transition-transform duration-150">
+              <div className={`w-11 h-11 rounded-full flex items-center justify-center text-white shadow-md transition-shadow duration-200 ${act.bgClass}`}>
+                {act.icon}
+              </div>
+              <span className="text-[11px] font-semibold text-slate-700 leading-tight mt-1.5 whitespace-nowrap">
+                {act.mobileLabel}
+              </span>
+            </div>
+          );
 
-        const buttonElement = (
-          <motion.div
-            animate={{ y: isHovered ? 0 : [0, -3, 0] }}
-            transition={{
-              y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.3 }
-            }}
-            className={`h-12 rounded-full border border-white/20 shadow-xl shadow-slate-900/20 text-white flex items-center justify-center cursor-pointer transition-all duration-300 ease-out overflow-hidden ${
-              act.bgClass
-            } ${isHovered ? 'px-4.5 gap-2.5 scale-105 shadow-2xl' : 'w-12 px-0'}`}
-          >
-            {/* Centered Icon */}
-            {act.icon}
+          if (act.onClick) {
+            return (
+              <button
+                key={`mobile-${act.id}`}
+                onClick={act.onClick}
+                className="focus:outline-none flex-1 flex justify-center"
+                aria-label={act.mobileLabel}
+              >
+                {mobileButtonContent}
+              </button>
+            );
+          }
 
-            {/* Label inside expanding pill */}
-            <span
-              className={`text-sm font-semibold tracking-wide whitespace-nowrap overflow-hidden transition-all duration-300 ${
-                isHovered ? 'max-w-[130px] opacity-100' : 'max-w-0 opacity-0'
-              }`}
-            >
-              {act.label}
-            </span>
-          </motion.div>
-        );
-
-        if (act.onClick) {
           return (
-            <button
-              key={act.id}
-              onClick={act.onClick}
-              onMouseEnter={() => setHoveredIdx(idx)}
-              onMouseLeave={() => setHoveredIdx(null)}
-              className="focus:outline-none cursor-pointer"
+            <a
+              key={`mobile-${act.id}`}
+              href={act.href}
+              target={act.target}
+              rel={act.target ? 'noreferrer' : undefined}
+              className="focus:outline-none flex-1 flex justify-center"
+              aria-label={act.mobileLabel}
+            >
+              {mobileButtonContent}
+            </a>
+          );
+        })}
+      </aside>
+
+      {/* Desktop Screen Vertical Floating Actions Stack */}
+      <aside
+        aria-label="Desktop Quick Contact Actions"
+        className="hidden md:flex fixed right-5 top-1/2 -translate-y-1/2 z-50 flex-col items-end gap-3.5 select-none"
+      >
+        {actions.map((act) => {
+          const innerContent = (
+            <div className="flex items-center justify-center h-full w-full px-0 group-hover:px-4 transition-all duration-300">
+              <div className="w-5 h-5 flex items-center justify-center shrink-0">
+                {act.icon}
+              </div>
+              <span className="max-w-0 opacity-0 group-hover:max-w-[120px] group-hover:opacity-100 group-hover:ml-2.5 transition-all duration-300 ease-out whitespace-nowrap overflow-hidden text-sm font-semibold tracking-wide">
+                {act.label}
+              </span>
+            </div>
+          );
+
+          const commonClasses = `group h-12 w-12 group-hover:w-auto rounded-full border border-white/20 shadow-xl shadow-slate-900/20 text-white flex items-center justify-center cursor-pointer transition-all duration-300 ease-out overflow-hidden hover:scale-105 hover:shadow-2xl ${act.bgClass}`;
+
+          if (act.onClick) {
+            return (
+              <button
+                key={`desktop-${act.id}`}
+                onClick={act.onClick}
+                className={`${commonClasses} focus:outline-none`}
+                aria-label={act.label}
+              >
+                {innerContent}
+              </button>
+            );
+          }
+
+          return (
+            <a
+              key={`desktop-${act.id}`}
+              href={act.href}
+              target={act.target}
+              rel={act.target ? 'noreferrer' : undefined}
+              className={`${commonClasses} focus:outline-none`}
               aria-label={act.label}
             >
-              {buttonElement}
-            </button>
+              {innerContent}
+            </a>
           );
-        }
-
-        return (
-          <a
-            key={act.id}
-            href={act.href}
-            target={act.target}
-            rel={act.target ? 'noreferrer' : undefined}
-            onMouseEnter={() => setHoveredIdx(idx)}
-            onMouseLeave={() => setHoveredIdx(null)}
-            className="focus:outline-none cursor-pointer"
-            aria-label={act.label}
-          >
-            {buttonElement}
-          </a>
-        );
-      })}
-    </aside>
+        })}
+      </aside>
+    </>
   );
 };
+

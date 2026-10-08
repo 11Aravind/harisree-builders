@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Maximize2, X, Sparkles, ArrowRight } from 'lucide-react';
+import { MapPin, Maximize2, X, ArrowRight } from 'lucide-react';
 import { GALLERY_ITEMS, type GalleryItem } from '../data/landingData';
 
 interface GalleryProps {
@@ -31,12 +31,11 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ onOpenConsultation }) =
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#edf7f1] text-[#226e40] text-xs font-semibold uppercase tracking-widest">
-            <Sparkles className="w-3.5 h-3.5" />
             <span>Featured Portfolio</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#304654] tracking-tight">
-            Our Completed & <span className="text-[#226e40]">Architectural Designs</span>
+            Our Featured <span className="text-[#226e40]">Projects</span>
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
@@ -90,6 +89,9 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ onOpenConsultation }) =
                 <div className="relative h-64 overflow-hidden bg-slate-900">
                   <img
                     src={item.imageUrl}
+                    onError={(e) => {
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80";
+                    }}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
@@ -157,6 +159,9 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ onOpenConsultation }) =
                 <div className="md:col-span-7 bg-slate-950 relative min-h-[300px] md:min-h-[450px]">
                   <img
                     src={selectedItem.imageUrl}
+                    onError={(e) => {
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80";
+                    }}
                     alt={selectedItem.title}
                     className="w-full h-full object-cover"
                   />

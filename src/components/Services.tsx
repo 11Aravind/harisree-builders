@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Compass, FileCheck, Building2, Calculator, Eye, Layers, Armchair, Trees, 
-  ArrowUpRight, CheckCircle2, Sparkles 
+  ArrowUpRight 
 } from 'lucide-react';
 import { SERVICES } from '../data/landingData';
 
@@ -39,92 +39,77 @@ export const Services: React.FC<ServicesProps> = ({ onOpenConsultation }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#edf7f1] text-[#226e40] text-xs font-semibold uppercase tracking-widest">
-            <Sparkles className="w-3.5 h-3.5" />
             <span>Our Service Portfolio</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#304654] tracking-tight">
-            Comprehensive Architectural & <span className="text-[#226e40]">Engineering Services</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#304654] tracking-tight">
+            Architectural & <span className="text-[#226e40]">Engineering Services</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
             All your home planning, permit approvals, 3D elevation renderings, site supervision, and turnkey interior fit-outs handled under one studio.
           </p>
         </div>
 
-        {/* 8 Services Grid with High-Res Background Image Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Services Grid with 5 Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, idx) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: idx * 0.08 }}
-              whileHover={{ y: -8, scale: 1.01 }}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group relative"
+              transition={{ duration: 0.4, delay: idx * 0.06 }}
+              whileHover={{ y: -6 }}
+              className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
             >
-              {/* Top Image Showcase Header with Hover Zoom */}
-              <div className="relative h-52 overflow-hidden bg-slate-900">
-                <img
-                  src={service.imageUrl}
-                  alt={service.titleEn}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#304654]/90 via-[#304654]/40 to-transparent" />
+              <div>
+                {/* Image Banner Header */}
+                <div className="relative h-40 overflow-hidden bg-slate-900">
+                  <img
+                    src={service.imageUrl}
+                    onError={(e) => {
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80";
+                    }}
+                    alt={service.titleEn}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#304654]/70 via-transparent to-transparent" />
 
-                {/* Top Floating Badge */}
-                {service.badge ? (
-                  <span className="absolute top-3.5 right-3.5 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#226e40] text-white shadow-md">
-                    {service.badge}
-                  </span>
-                ) : (
-                  <span className="absolute top-3.5 right-3.5 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/90 text-[#304654] backdrop-blur-md">
-                    0{idx + 1}
-                  </span>
-                )}
-
-                {/* Icon Container Overlay */}
-                <div className="absolute bottom-3 left-4 flex items-center gap-2.5 text-white">
-                  <div className="w-10 h-10 rounded-xl bg-[#226e40] text-white flex items-center justify-center shadow-lg">
+                  {/* Icon Badge Top-Left */}
+                  <div className="absolute top-3 left-3 w-9 h-9 rounded-xl bg-white/90 backdrop-blur-md text-[#226e40] flex items-center justify-center shadow-md">
                     {getServiceIcon(service.iconName)}
                   </div>
-                  <span className="text-xs font-bold text-[#edf7f1] uppercase tracking-wide">
-                    Service 0{idx + 1}
-                  </span>
-                </div>
-              </div>
 
-              {/* Card Body Content */}
-              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <h3 className="text-lg font-bold text-[#304654] group-hover:text-[#226e40] transition-colors mb-2 leading-snug">
+                  {/* Optional Popular Tag Top-Right */}
+                  {service.badge && (
+                    <span className="absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-[#226e40] text-white shadow-xs">
+                      {service.badge}
+                    </span>
+                  )}
+                </div>
+
+                {/* Card Body Content */}
+                <div className="p-5 space-y-2">
+                  <h3 className="text-base font-bold text-[#304654] group-hover:text-[#226e40] transition-colors line-clamp-2 leading-snug">
                     {service.titleEn}
                   </h3>
 
-                  <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                  <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
                     {service.description}
                   </p>
-
-                  {/* Features Checklist */}
-                  <ul className="space-y-1.5 mb-2">
-                    {service.features.map((feat, fIdx) => (
-                      <li key={fIdx} className="flex items-start gap-2 text-xs text-slate-700">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#226e40] mt-0.5 shrink-0" />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
+              </div>
 
-                {/* Inquire Action Button */}
+              {/* Action Button */}
+              <div className="p-5 pt-0">
                 <button
                   onClick={() => onOpenConsultation(service.titleEn)}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-semibold text-[#304654] group-hover:text-white bg-slate-100 group-hover:bg-[#226e40] transition-all duration-300 shadow-xs cursor-pointer"
+                  className="w-full inline-flex items-center justify-between py-2.5 px-4 rounded-xl text-xs font-semibold text-[#226e40] group-hover:text-white bg-[#edf7f1] group-hover:bg-[#226e40] transition-all duration-300 cursor-pointer"
                 >
-                  <span>Book Service Consultation</span>
+                  <span>Enquire Now</span>
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </button>
               </div>

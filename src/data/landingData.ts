@@ -47,12 +47,14 @@ export interface FaqItem {
 export const COMPANY_INFO = {
   nameEn: "Harisree Builders & Interiors",
   taglineEn: "Premier Architectural Planning, Construction & Vastu Studio",
-  phone: "+91 9633479993",
+  phone: "+91 96334 79993",
   phoneRaw: "9633479993",
   whatsappUrl: "https://wa.me/919633479993",
+  facebookUrl: "https://www.facebook.com/p/Hari-sree-builders-100063819617740/",
+  googleMapsUrl: "https://share.google/XlSvlOJBD1u7jdgXA",
   location: "Muthupilakkadu, Sasthamcotta, Kollam, Kerala 690520",
   shortLocation: "Sasthamcotta, Kollam",
-  email: "contact@harisreebuilders.com",
+  email: "hareesreebuilders@gmail.com",
   workingHours: "Mon – Sat: 9:00 AM – 7:00 PM",
   experienceYears: "15+",
   projectsCompleted: "250+",
@@ -113,50 +115,11 @@ export const SERVICES: ServiceItem[] = [
     ]
   },
   {
-    id: "loan-assistance",
-    titleEn: "Housing Loan Assistance & Bank Documentation",
-    description: "End-to-end support for home construction loans across SBI, HDFC, Canara, Federal Bank, and nationalized/private banking institutions.",
-    iconName: "FileCheck",
-    imageUrl: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80",
-    features: [
-      "Bank Valuation Estimates & Stage Reports",
-      "Approved Blueprint Documentation",
-      "Detailed Quantity Cost Estimates",
-      "Fast-Track Bank Sanction Support"
-    ]
-  },
-  {
-    id: "permit-approval",
-    titleEn: "Municipality & Panchayat Building Plan Approval",
-    description: "Hassle-free preparation and submission of KBR/MDBR compliant plans for quick government permits and occupancy certification.",
-    iconName: "Building2",
-    imageUrl: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
-    features: [
-      "KBR (Kerala Building Rules) Compliance",
-      "Licensed Engineer Sign-off & Stamp",
-      "Panchayat / Municipality Online Clearance",
-      "Occupancy Certificate Documentation"
-    ]
-  },
-  {
-    id: "cost-estimation",
-    titleEn: "Detailed Cost Estimation & Quantity Surveying",
-    description: "Itemized BOQ (Bill of Quantities) detailing exact cement, steel, sand, tile, paint, and labor costs to guarantee 100% budget predictability.",
-    iconName: "Calculator",
-    imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
-    features: [
-      "Stage-by-Stage Cash Flow Planning",
-      "Itemized Material Specifications",
-      "Zero Hidden Cost Assurance",
-      "Custom Upgrade Options"
-    ]
-  },
-  {
     id: "site-supervision",
     titleEn: "On-Site Supervision & Quality Auditing",
     description: "Dedicated resident engineers conducting concrete mix testing, steel reinforcement audits, brickwork alignment, and waterproofing checks.",
     iconName: "Eye",
-    imageUrl: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
     badge: "Core Guarantee",
     features: [
       "Daily Construction Progress Logs",
@@ -197,7 +160,7 @@ export const SERVICES: ServiceItem[] = [
     titleEn: "Landscape Design & Exterior Green Spaces",
     description: "Courtyard gardens, modern paving stone driveways, natural lawn turfing, outdoor lighting, and decorative compound wall designs.",
     iconName: "Trees",
-    imageUrl: "https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
     features: [
       "Traditional Kerala Courtyard (Nadumuttam)",
       "Interlocking Paving & Granite Driveways",
@@ -263,7 +226,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: "Kerala Nadumuttam & Paved Courtyard",
     category: "landscaping",
     categoryLabel: "Landscaping",
-    imageUrl: "https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
     location: "Muthupilakkadu, Sasthamcotta",
     area: "Exterior & Courtyard",
     description: "Natural granite stone pathways, indoor rainwater courtyard, and accent tropical flora."

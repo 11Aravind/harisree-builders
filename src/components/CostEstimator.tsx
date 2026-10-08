@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare, Check, Sparkles } from 'lucide-react';
+import { MessageSquare, Check } from 'lucide-react';
 import { ESTIMATOR_PACKAGES } from '../data/landingData';
 
 export const CostEstimator: React.FC = () => {
@@ -70,7 +70,6 @@ export const CostEstimator: React.FC = () => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 text-[#C2410C] text-xs font-bold uppercase tracking-widest">
-            <Sparkles className="w-3.5 h-3.5" />
             <span>Interactive Estimator</span>
           </div>
 

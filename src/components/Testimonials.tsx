@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Quote, CheckCircle, MapPin, Sparkles } from 'lucide-react';
+import { Star, Quote, CheckCircle, MapPin } from 'lucide-react';
 import { TESTIMONIALS } from '../data/landingData';
 
 export const Testimonials: React.FC = () => {
@@ -11,7 +11,6 @@ export const Testimonials: React.FC = () => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#edf7f1] text-[#226e40] text-xs font-semibold uppercase tracking-widest">
-            <Sparkles className="w-3.5 h-3.5" />
             <span>Client Social Proof</span>
           </div>
 
@@ -58,6 +57,9 @@ export const Testimonials: React.FC = () => {
               <div className="mt-8 pt-6 border-t border-slate-100 flex items-center gap-4">
                 <img
                   src={item.avatar}
+                  onError={(e) => {
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80";
+                  }}
                   alt={item.name}
                   className="w-12 h-12 rounded-full object-cover border-2 border-[#226e40]/30"
                 />

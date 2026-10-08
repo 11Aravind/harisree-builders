@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface HeroProps {
   onOpenConsultation: (service?: string) => void;
@@ -81,6 +81,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
         >
           <img
             src={slide.image}
+            onError={(e) => {
+              e.currentTarget.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85";
+            }}
             alt={slide.title}
             className="w-full h-full object-cover object-center"
           />
@@ -139,28 +142,36 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
               </motion.p>
             </AnimatePresence>
 
-            {/* CTA Action Buttons */}
+            {/* Single Pill CTA Button & Centered Carousel Dots */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-4 mb-6"
+              className="inline-flex flex-col items-center gap-4 mb-6"
             >
               <button
-                onClick={() => onOpenConsultation('Free Architectural Consultation')}
-                className="px-8 py-3.5 rounded-xl text-sm font-semibold uppercase tracking-wider text-white bg-[#226e40] hover:bg-[#1b5732] shadow-xl transition-all active:scale-95 flex items-center gap-2 group cursor-pointer"
+                onClick={() => onOpenConsultation('Enquiry Now')}
+                className="px-8 py-3 rounded-full text-base font-semibold text-white bg-black/20 hover:bg-white hover:text-[#304654] border border-white transition-all duration-300 active:scale-95 flex items-center gap-3 group cursor-pointer shadow-lg"
               >
-                <Sparkles className="w-4 h-4 text-emerald-200" />
-                <span>Book Free Consultation</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span>Enquiry Now</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
               </button>
 
-              <a
-                href="#projects"
-                className="px-8 py-3.5 rounded-xl text-sm font-semibold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 transition-all active:scale-95"
-              >
-                Explore Projects
-              </a>
+              {/* Carousel Pagination Dots (Centered beneath the button) */}
+              <div className="flex items-center justify-center gap-3 pt-1">
+                {heroSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentSlide(idx)}
+                    className={`w-3.5 h-3.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      idx === currentSlide
+                        ? 'bg-white scale-100 shadow-xs'
+                        : 'border border-white/80 bg-transparent hover:bg-white/40'
+                    }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
             </motion.div>
 
           </div>

@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Pause, CheckCircle2, Sparkles } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { CheckCircle2 } from 'lucide-react';
 
 export const BuildingTransformation: React.FC = () => {
-  const [activeStage, setActiveStage] = useState<number>(0);
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
-
   const stages = [
     {
       step: '01',
       title: 'Foundation & Steel Skeleton',
       subtitle: 'Soil Testing, Ground Excavation & RCC Footing',
       description: 'Precision engineering grid layout, deep foundation footing, anti-termite ground barrier treatment, and Grade-53 TMT 550D steel column framing.',
-      imageUrl: 'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=1600&q=85',
+      imageUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=85',
       badge: 'Phase 1: Ground Skeleton',
       metrics: [
         { label: 'Soil Audit', value: '100% Certified' },
@@ -61,175 +58,109 @@ export const BuildingTransformation: React.FC = () => {
     }
   ];
 
-  useEffect(() => {
-    if (!isPlaying) return;
-    const interval = setInterval(() => {
-      setActiveStage((prev) => (prev + 1) % stages.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isPlaying, stages.length]);
-
-  const currentStage = stages[activeStage];
-
   return (
-    <section id="transformation" className="py-24 bg-gradient-to-b from-[#FAF9F6] via-white to-[#FAF9F6] text-[#304654] relative overflow-hidden">
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="transformation" className="py-20 bg-gradient-to-b from-[#FAF9F6] via-white to-[#FAF9F6] text-[#304654] relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#edf7f1] text-[#226e40] text-xs font-semibold uppercase tracking-widest">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Construction Progression</span>
+            <span>Construction Journey</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#304654]">
-            Watch Your Dream Home Evolve From <span className="text-[#226e40]">Skeleton to Perfection</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#304654]">
+            4-Stage <span className="text-[#226e40]">Construction Journey</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-            Experience our stage-by-stage engineering precision: from ground excavation and steel framing to final turnkey interior execution.
+          <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+            Experience our stage-by-stage engineering precision from initial ground excavation to turnkey interior completion.
           </p>
         </div>
 
-        {/* Stage Progress Bar / Selector Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        {/* Scroll-Triggered Sticky Stacked Cards */}
+        <div className="space-y-8 sm:space-y-12 max-w-5xl mx-auto pb-12">
           {stages.map((stg, idx) => {
-            const isActive = activeStage === idx;
+            const topOffsets = ['top-24 sm:top-28', 'top-28 sm:top-32', 'top-32 sm:top-36', 'top-36 sm:top-40'];
+            const zIndexes = ['z-10', 'z-20', 'z-30', 'z-40'];
+
             return (
-              <button
+              <motion.div
                 key={stg.step}
-                onClick={() => {
-                  setActiveStage(idx);
-                  setIsPlaying(false);
-                }}
-                className={`p-5 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden group cursor-pointer ${
-                  isActive
-                    ? 'border-[#226e40] bg-white shadow-xl ring-2 ring-[#226e40]/20'
-                    : 'border-slate-200/90 bg-white/80 hover:bg-white hover:border-slate-300'
-                }`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className={`sticky ${topOffsets[idx]} ${zIndexes[idx]} bg-white rounded-3xl border border-slate-200/90 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden p-6 sm:p-8`}
               >
-                {/* Active Progress Line */}
-                {isActive && isPlaying && (
-                  <motion.div
-                    initial={{ width: '0%' }}
-                    animate={{ width: '100%' }}
-                    transition={{ duration: 5, ease: 'linear' }}
-                    className="absolute top-0 left-0 h-1 bg-[#226e40]"
-                  />
-                )}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+                  
+                  {/* Left Image Box */}
+                  <div className="lg:col-span-6 relative h-56 sm:h-72 rounded-2xl overflow-hidden bg-slate-900 group">
+                    <img
+                      src={stg.imageUrl}
+                      onError={(e) => {
+                        e.currentTarget.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85";
+                      }}
+                      alt={stg.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#304654]/70 via-transparent to-transparent" />
+                    
+                    {/* Badge */}
+                    <div className="absolute top-3.5 left-3.5 backdrop-blur-md bg-white/90 border border-slate-200 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#304654] shadow-md flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#226e40] animate-pulse" />
+                      <span>{stg.badge}</span>
+                    </div>
+                  </div>
 
-                <div className="flex items-center justify-between mb-2">
-                  <span className={`text-xs font-bold uppercase tracking-widest ${isActive ? 'text-[#226e40]' : 'text-slate-400'}`}>
-                    Stage {stg.step}
-                  </span>
-                  <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full ${isActive ? 'bg-[#edf7f1] text-[#226e40]' : 'bg-slate-100 text-slate-600'}`}>
-                    {idx === 0 ? 'Skeleton' : idx === 1 ? 'Framing' : idx === 2 ? 'Elevation' : 'Turnkey'}
-                  </span>
+                  {/* Right Details */}
+                  <div className="lg:col-span-6 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold uppercase tracking-widest text-[#226e40]">
+                        Phase {stg.step} of 04
+                      </span>
+                      <span className="text-2xl font-extrabold text-slate-300">
+                        {stg.step}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-extrabold text-[#304654]">
+                        {stg.title}
+                      </h3>
+                      <p className="text-xs text-[#226e40] font-semibold mt-1">
+                        {stg.subtitle}
+                      </p>
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      {stg.description}
+                    </p>
+
+                    {/* Metrics Row */}
+                    <div className="grid grid-cols-3 gap-2.5 pt-2">
+                      {stg.metrics.map((m, mIdx) => (
+                        <div key={mIdx} className="bg-[#edf7f1]/70 p-2.5 rounded-xl border border-[#226e40]/20">
+                          <p className="text-[9px] text-slate-500 font-bold uppercase">{m.label}</p>
+                          <p className="text-xs font-extrabold text-[#304654] mt-0.5">{m.value}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Inspection Guarantee */}
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                      <span className="text-xs text-slate-500 font-medium">Quality Inspection</span>
+                      <span className="inline-flex items-center gap-1 text-xs font-bold text-[#226e40]">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        100% Certified
+                      </span>
+                    </div>
+                  </div>
+
                 </div>
-
-                <h3 className={`text-sm sm:text-base font-semibold transition-colors ${isActive ? 'text-[#304654]' : 'text-slate-600 group-hover:text-[#304654]'}`}>
-                  {stg.title}
-                </h3>
-              </button>
+              </motion.div>
             );
           })}
-        </div>
-
-        {/* Animated Visual Canvas Box */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 p-4 sm:p-8 shadow-xl overflow-hidden relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            {/* Left Image Panning Canvas */}
-            <div className="lg:col-span-7 relative h-[360px] sm:h-[480px] rounded-2xl overflow-hidden bg-slate-900 group">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentStage.step}
-                  initial={{ opacity: 0, scale: 1.06 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.8, ease: 'easeInOut' }}
-                  className="w-full h-full relative overflow-hidden"
-                >
-                  {/* Smooth Panning Motion Image */}
-                  <motion.img
-                    animate={{ scale: [1, 1.08, 1], x: [0, -10, 0] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                    src={currentStage.imageUrl}
-                    alt={currentStage.title}
-                    className="w-full h-full object-cover"
-                  />
-                  
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#304654]/80 via-transparent to-transparent" />
-                  
-                  {/* Phase Overlay Pill */}
-                  <div className="absolute top-4 left-4 backdrop-blur-md bg-white/90 border border-slate-200 px-4 py-2 rounded-full text-xs font-semibold text-[#304654] shadow-md flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#226e40] animate-pulse" />
-                    <span>{currentStage.badge}</span>
-                  </div>
-
-                  {/* Stage Play / Pause Control */}
-                  <button
-                    onClick={() => setIsPlaying(!isPlaying)}
-                    className="absolute top-4 right-4 backdrop-blur-md bg-white/90 hover:bg-white text-slate-900 p-2.5 rounded-full shadow-md transition-colors cursor-pointer"
-                    aria-label={isPlaying ? 'Pause auto transition' : 'Play auto transition'}
-                  >
-                    {isPlaying ? <Pause className="w-4 h-4 text-[#304654]" /> : <Play className="w-4 h-4 text-[#226e40] fill-[#226e40]" />}
-                  </button>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Right Information Panel */}
-            <div className="lg:col-span-5 space-y-6">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentStage.step}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="space-y-6"
-                >
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#226e40]">
-                      Phase {currentStage.step} of 04
-                    </span>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-[#304654] mt-1">
-                      {currentStage.title}
-                    </h3>
-                    <p className="text-xs text-[#226e40] font-semibold mt-1">
-                      {currentStage.subtitle}
-                    </p>
-                  </div>
-
-                  <p className="text-sm text-slate-600 leading-relaxed font-normal">
-                    {currentStage.description}
-                  </p>
-
-                  {/* Metrics Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                    {currentStage.metrics.map((m, mIdx) => (
-                      <div key={mIdx} className="bg-[#edf7f1]/60 p-3 rounded-xl border border-[#226e40]/20">
-                        <p className="text-[10px] text-slate-500 font-bold uppercase">{m.label}</p>
-                        <p className="text-xs font-extrabold text-[#304654] mt-0.5">{m.value}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Verification Guarantee */}
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-xs text-slate-500 font-medium">Stage Guaranteed Inspection</span>
-                    <span className="inline-flex items-center gap-1 text-xs font-bold text-[#226e40]">
-                      <CheckCircle2 className="w-4 h-4" />
-                      100% Certified
-                    </span>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-          </div>
         </div>
 
       </div>

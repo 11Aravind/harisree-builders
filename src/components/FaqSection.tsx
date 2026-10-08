@@ -11,7 +11,7 @@ export const FaqSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-[#FAF9F6] to-white relative overflow-hidden">
+    <section id="faq" className="py-24 bg-gradient-to-b from-[#FAF9F6] to-white relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
