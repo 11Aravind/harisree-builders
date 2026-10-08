@@ -88,11 +88,11 @@ export const WhoWeAre: React.FC<WhoWeAreProps> = () => {
 
             {/* Body Copy */}
             <p className="text-slate-600 text-base font-normal leading-relaxed">
-              Based in Muthupilakkadu, Sasthamcotta, <strong>Harisree Builders & Interiors</strong> is a premier residential design and turnkey construction firm. We seamlessly bridge authentic traditional Vastu Shastra principles with sleek contemporary architecture.
+              Headquartered in Muthupilakkadu, Sasthamcotta, <strong>Harisree Builders & Interiors</strong> is the leading architectural design and turnkey building construction firm serving <strong>Sasthamcotta</strong>, <strong>Bharanikavu</strong>, <strong>Karunagappally</strong>, <strong>Adoor</strong>, <strong>Kottarakkara</strong>, and across <strong>Kollam, Kerala</strong>. We seamlessly bridge authentic traditional Vastu Shastra principles with sleek contemporary engineering.
             </p>
 
             <p className="text-slate-600 text-sm font-normal leading-relaxed">
-              Our full-service engineering studio provides complete end-to-end solutions — from initial 2D spatial layouts, 3D photorealistic exterior renderings, and official Panchayat/Municipality building permit approvals, to structural civil execution, site supervision, and bespoke modular interior craftsmanship.
+              Our full-service engineering studio provides complete end-to-end solutions — from initial 2D spatial layouts, 3D photorealistic exterior elevations, and official Panchayat & Municipality building permit approvals, to structural civil execution, on-site supervision, and bespoke modular interior craftsmanship.
             </p>
 
             {/* 4 Core Pillars */}

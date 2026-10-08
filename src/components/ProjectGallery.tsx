@@ -92,7 +92,7 @@ export const ProjectGallery: React.FC<GalleryProps> = ({ onOpenConsultation }) =
                     onError={(e) => {
                       e.currentTarget.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80";
                     }}
-                    alt={item.title}
+                    alt={`${item.title} - ${item.location} by Harisree Builders`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 transition-colors duration-300" />
